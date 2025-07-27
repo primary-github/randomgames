@@ -48,7 +48,7 @@ export default function Home() {
               You will not see the same game twice until you refresh the page or start a new session.
             </p>
             <p className="text-amber-200 text-xs leading-relaxed">
-              After playing all 50 games, the cycle will restart and you can play any game again.
+              After playing all 60 curated games, the cycle will restart and you can play any game again.
             </p>
           </div>
         </div>
