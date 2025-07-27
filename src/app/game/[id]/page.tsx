@@ -447,11 +447,12 @@ function getFaviconUrl(url: string) {
   }
 }
 
-export default function GamePage({ params }: { params: { id: string } }) {
+export default function GamePage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const [currentGame, setCurrentGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
   const [playedGames, setPlayedGames] = useState<Set<number>>(new Set());
+  const [gameId, setGameId] = useState<string>('');
 
   useEffect(() => {
     // Load played games from sessionStorage
@@ -462,6 +463,15 @@ export default function GamePage({ params }: { params: { id: string } }) {
   }, []);
 
   useEffect(() => {
+    // Resolve params Promise for Next.js 15 compatibility
+    params.then(resolvedParams => {
+      setGameId(resolvedParams.id);
+    });
+  }, [params]);
+
+  useEffect(() => {
+    if (!gameId) return;
+
     // Simulate loading and select a random game
     const timer = setTimeout(() => {
       const availableGames = sampleGames.filter(game => !playedGames.has(game.id));
@@ -481,7 +491,7 @@ export default function GamePage({ params }: { params: { id: string } }) {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [params.id, playedGames]);
+  }, [gameId, playedGames]);
 
   const goToNextGame = () => {
     if (currentGame) {
