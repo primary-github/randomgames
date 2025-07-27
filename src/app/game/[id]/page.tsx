@@ -3,6 +3,16 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { HomeIcon, PlayIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
+
+// Game interface
+interface Game {
+  id: number;
+  name: string;
+  url: string;
+  description: string;
+  category: string;
+}
 
 // Expanded game data with more safe games
 const sampleGames = [
@@ -439,7 +449,7 @@ function getFaviconUrl(url: string) {
 
 export default function GamePage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [currentGame, setCurrentGame] = useState<any>(null);
+  const [currentGame, setCurrentGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
   const [playedGames, setPlayedGames] = useState<Set<number>>(new Set());
 
@@ -553,11 +563,13 @@ export default function GamePage({ params }: { params: { id: string } }) {
               <h3 className="text-lg font-semibold text-white mb-4">Game Preview</h3>
               <div className="flex flex-col items-center justify-center py-8">
                 <div className="flex items-center mb-4">
-                  <img
-                    src={getFaviconUrl(currentGame?.url)}
-                    alt="Favicon"
-                    className="w-10 h-10 rounded mr-3 bg-white shadow"
-                    style={{ minWidth: 40, minHeight: 40 }}
+                  <Image
+                    src={getFaviconUrl(currentGame?.url || '')}
+                    alt="Game Favicon"
+                    width={40}
+                    height={40}
+                    className="rounded mr-3 bg-white shadow"
+                    unoptimized
                   />
                   <span className="text-amber-200 text-lg font-semibold">{currentGame?.name}</span>
                 </div>
