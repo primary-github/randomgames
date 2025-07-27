@@ -26,10 +26,10 @@ export default function Home() {
 
           <button
             onClick={goToRandomGame}
-            className="group relative inline-flex items-center justify-center px-12 py-6 text-2xl md:text-3xl font-bold text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 hover:scale-105 hover:from-amber-600 hover:to-yellow-600 transform hover:-translate-y-1"
+            className="group relative inline-flex items-center justify-center px-8 py-4 md:px-12 md:py-6 text-lg md:text-2xl lg:text-3xl font-bold text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 hover:scale-105 hover:from-amber-600 hover:to-yellow-600 transform hover:-translate-y-1 w-full max-w-md md:max-w-lg mx-auto"
           >
-            <PlayIcon className="w-8 h-8 mr-3 relative z-10" />
-            <span className="relative z-10">Go to Random Game</span>
+            <PlayIcon className="w-6 h-6 md:w-8 md:h-8 mr-2 md:mr-3 relative z-10 flex-shrink-0" />
+            <span className="relative z-10 text-center">Go to Random Game</span>
             <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-yellow-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
         </div>
